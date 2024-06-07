@@ -1,0 +1,36 @@
+
+@media only screen and (width < 1100px) {
+	.newGroup {
+		max-width: 320px;
+        height: 230px;
+		padding: 30px 10px 10px 20px;
+	}
+	.newGroup h2 {
+		font-size: 18px;
+	}
+	/* .newGroup h2 span */
+	.inputGroup input {
+		font-size: 13px;
+		height: 30px;
+		width: 65%;
+        padding: 5px 10px;
+	}
+	.inputLabel {
+		font-size: 13px;
+		margin-right: 5px;
+	}
+	.inputColor input,.inputCircle {
+		width: 25px;
+        height: 25px;
+	}
+    .inputCircle{
+        margin-right: 5px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.418);
+    }
+    .inputButton{
+        padding: 8px 20px;
+        font-size: 15px;
+		bottom: 10px;
+    }
+}

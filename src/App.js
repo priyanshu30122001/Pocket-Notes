@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+// import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import NoteBox from "./components/NoteBox/NoteBox";
+import Pocket from "./components/Pocket/Pocket";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const [selected, setSelected] = useState("");
+	const [back, setBack] = useState(true)
+
+	const getSelected = (selected) => {
+		setSelected(selected)
+	}
+
+	const handleGoBack = (back) => {
+		setBack(back)
+	}
+
+
+	return (
+		
+		     <div className="flex w-[100vw] h-[100vh] overflow-hidden lg:block">
+			   <Pocket onSubmitApp={getSelected} back = {back} setBack = {handleGoBack} />
+			   <NoteBox selected={selected} setBack = {handleGoBack}/>
+			   {/* <Route path="notebox" element={<NoteBox selected={selected} setBack = {handleGoBack} />} /> */}
+		    </div>
+	
+	);
 }
 
 export default App;
