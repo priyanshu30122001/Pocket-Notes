@@ -21,12 +21,13 @@ const Pocket = (props) => {
   
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4 pl-4 pt-4 w-[35vw] bg-white overflow-hidden lg:z-100 lg:block lg:w-[100vw] lg:h-[100vh]  lg:hidden" id="hidden">
-        <div className="w-[100%] flex justify-items-start mb-[2vh] lg:w-[100vh]">
+      <div className="flex flex-col items-center justify-center gap-4 pl-4 pt-4 w-[35vw] bg-white overflow-hidden 
+                      lg:z-200 lg:w-[100vw] lg:h-[100vh]"  id="hidden">
+        <div className="w-[100%] flex justify-items-start mb-[2vh] lg:ml-[2vw] lg:mt-[2vh]">
          <h1 className="text-3xl font-medium font-roboto ">Pocket Notes</h1>
         </div>
         <NewGroup newGroup={setNoteGroups} />
-        <div className="w-[100%] h-[85vh] overflow-y-auto flex flex-col ">
+        <div className="w-[100%] h-[85vh] overflow-y-auto flex flex-col " id="notes">
           {noteGroups.length !== 0 ? ( " ") :
            ( <div className="flex flex-col items-center justify-center h-[80%] text-slate-500 text-center">
               <img className="h-[50px]" src="https://i.pinimg.com/originals/8a/dd/cd/8addcd0dad97ceac659e066944a771fa.gif" alt="error" />

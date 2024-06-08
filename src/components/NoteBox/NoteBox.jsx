@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import style from "./notebox.module.css";
+import "./notebox.module.css";
 import Img from "../../images/notes.png";
 import arrow from "../../images/Vector.png";
 import leftarrow from "../../images/leftarrow.png"
@@ -73,14 +73,14 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
 
   return (
     <>
-      <div className="h-[12vh] w-[100%] text-[#ffffff] flex items-center bg-[#E8E8E8] lg:pl-[20px]" >
-        <img src={leftarrow} alt="" className="" id={style.back} onClick={() => handleGoBack()}></img>
+      <div className="h-[12vh] w-[100%] text-[#ffffff] flex items-center bg-[#E8E8E8] lg:pl-[20px] lg:h-[8vh] " >
+        <img src={leftarrow} alt="" className=" hidden  lg:block "  onClick={() => handleGoBack()}></img>
         <div className=" rounded-full flex items-center justify-center h-[60px] w-[60px] text-[30px] text-white font-medium mx-[30px] "style={{ backgroundColor: noteGroup[2] }} >
           {noteGroup[0]}
         </div>
         <div className="text-[25px] font-medium text-black">{noteGroup[1]}</div>
       </div>
-      <div className="w-[100%] h-[60vh] pt-[20px] p-[30px]  px-[40px] overflow-y-auto rounded-bl-lg lg:p-[15px]   ">
+      <div className="w-[100%] h-[60vh] pt-[20px] p-[30px]  px-[40px] overflow-y-auto rounded-bl-lg lg:p-[15px] lg:h-[70vh]   ">
         {[...myNote].map((note, index) => (
           <div className="w-[100%]  p-5 text-[16px] mb-[20px] flex flex-row last:mb-0 pb-0 lg:p-0 " key={index}>
             <div className="basis-1/5 text-[18.5px] font-medium lg:text-[13.59px] lg:mt-2 ">
@@ -92,10 +92,10 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
         ))}
       </div>
 
-      <form onSubmit={submitNote} className="w-[100%] h-[26vh] bg-[#E8E8E8] p-[20px] rounded-bl-xl ">
+      <form onSubmit={submitNote} className="w-[100%] h-[26vh] bg-[#E8E8E8] p-[20px] rounded-bl-xl lg:h-[18vh] lg:mt-[5vh] ">
         <textarea
           required
-          className="w-[100%] h-[100%] outline-none p-[10px] pl-[30px] text-[16px] rounded-md resize-none  relative placeholder:text-2xl " 
+          className="w-[100%] h-[100%] outline-none p-[10px] pl-[30px] text-[16px] rounded-md resize-none  relative placeholder:text-2xl lg:placeholder:text-xl " 
           name="note" 
           id="note"
           onChange={(event) => {
@@ -104,9 +104,9 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
           value={allNotes}
           placeholder="Enter your text here..........."
         ></textarea>
-        <button className="h-max w-max absolute bottom-[-18px] right-[30px] cursor-pointer border-none lg:bottom-[-30px]"> <img src={arrow} alt="error" /></button>
+        <button className="h-max w-max absolute bottom-[-18px] right-[30px] cursor-pointer border-none lg:bottom-[-60px]"> <img src={arrow}  className="lg:h-[17px] lg:w-[21px]" alt="error" /></button>
       </form>
-      <div className="bg-white h-[3vh]">
+      <div className="bg-white h-[3vh] lg:hidden lg:h-0">
     </div>
     </>
   );
@@ -116,8 +116,6 @@ const NoteBox = (props) => {
   const [noteGroup, setNoteGroup] = useState(null);
 
   const [selected, setSelected] = useState("");
-  const [hidden,setDisplay] = useState(true)
-
   useEffect(() => {
     setSelected(props.selected);
 
@@ -135,7 +133,7 @@ const NoteBox = (props) => {
   }, [props.selected]);
 
   return (
-    <div className="w-[100%] bg-[#F7ECDC] font-roboto relative lg:z-[90] lg:w-[100vw]" style={{ height: !noteGroup ?"100%" : '90vh' }} id="hidden" >
+    <div className="w-[100%] bg-[#F7ECDC] z-0 font-roboto relative lg:z-0 lg:w-[100vw] lg:fixed lg:top-0" style={{ height: !noteGroup ?"100%" : '90vh' }}  >
       {!noteGroup ? (
         <div className="flex items-center justify-center flex-col  ">
           <img src={Img} alt="Pocket Notes"  className="w-[40%] mt-[20vh]"/>

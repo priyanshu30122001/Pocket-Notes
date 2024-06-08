@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NoteBox from "./components/NoteBox/NoteBox";
 import Pocket from "./components/Pocket/Pocket";
