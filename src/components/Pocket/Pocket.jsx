@@ -22,7 +22,7 @@ const Pocket = (props) => {
       <div className={`flex flex-col items-center justify-center gap-4 pl-4 pt-4 w-[35vw] bg-white overflow-hidden 
                       lg:z-200 lg:w-[100vw] lg:h-[100vh] ${props.isActive ? 'lg:block':'lg:hidden'} `}>
         <div className="w-[100%] flex justify-items-start mb-[2vh] lg:ml-[2vw] lg:mt-[2vh]">
-         <h1 className="text-3xl font-medium font-roboto ">Pocket Notes</h1>
+         <h1 className="text-3xl font-medium font-roboto lg:text-[33px]">Pocket Notes</h1>
         </div>
         <NewGroup newGroup={setNoteGroups} />
         <div className="w-[100%] h-[85vh] overflow-y-auto flex flex-col " id="notes">

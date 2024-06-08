@@ -86,7 +86,7 @@ const NewGroup = (props) => {
 	return (
 		<>
 			<div
-				className="bg-black text-white text-xl font-medium rounded-full w-max px-4 py-1 ml-4 cursor-pointer"
+				className="bg-black text-white text-2xl font-medium rounded-full w-max text-center px-7 py-1  cursor-pointer lg:w-[90%] lg:mx-2"
 				onClick={() => (group ? setGroup(false) : setGroup(true))}
 			>
 				+ Create Notes group
