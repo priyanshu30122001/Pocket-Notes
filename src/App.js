@@ -9,22 +9,17 @@ import Pocket from "./components/Pocket/Pocket";
 function App() {
 
 	const [selected, setSelected] = useState("");
-	const [back, setBack] = useState(true)
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const getSelected = (selected) => {
 		setSelected(selected)
 	}
-
-	const handleGoBack = (back) => {
-		setBack(back)
-	}
-
-
+	  
 	return (
 		
 		     <div className="flex w-[100vw] h-[100vh] overflow-hidden lg:block">
-			   <Pocket onSubmitApp={getSelected} back = {back} setBack = {handleGoBack} />
-			   <NoteBox selected={selected} setBack = {handleGoBack}/>
+			   <Pocket onSubmitApp={getSelected} isActive={activeIndex === 0}  setActiveIndex={setActiveIndex}   />
+			   <NoteBox selected={selected} isActive={activeIndex !== 0} setActiveIndex={setActiveIndex} />
 			   {/* <Route path="notebox" element={<NoteBox selected={selected} setBack = {handleGoBack} />} /> */}
 		    </div>
 	

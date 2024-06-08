@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import styles from "./newgroup.module.css";
 
 const NewGroup = (props) => {
 	const colorOptions = [

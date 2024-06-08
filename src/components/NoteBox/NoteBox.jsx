@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./notebox.module.css";
 import Img from "../../images/notes.png";
 import arrow from "../../images/Vector.png";
 import leftarrow from "../../images/leftarrow.png"
 import lock from "../../images/lock.png"
 
 
-const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
+const NoteSection = ({ noteGroup, selected},onBack) => {
   const [myNote, setMyNote] = useState([]);
   const [allNotes, setAllNotes] = useState([]);
 
@@ -67,14 +66,10 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
 
     setAllNotes("");
   };
-  const handleGoBack = () => {
-    setGoBacks(true)
-  }
-
   return (
     <>
       <div className="h-[12vh] w-[100%] text-[#ffffff] flex items-center bg-[#E8E8E8] lg:pl-[20px] lg:h-[8vh] " >
-        <img src={leftarrow} alt="" className=" hidden  lg:block "  onClick={() => handleGoBack()}></img>
+        <img src={leftarrow} alt="" className=" hidden  lg:block " onClick={onBack}></img>
         <div className=" rounded-full flex items-center justify-center h-[60px] w-[60px] text-[30px] text-white font-medium mx-[30px] "style={{ backgroundColor: noteGroup[2] }} >
           {noteGroup[0]}
         </div>
@@ -98,8 +93,16 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
           className="w-[100%] h-[100%] outline-none p-[10px] pl-[30px] text-[16px] rounded-md resize-none  relative placeholder:text-2xl lg:placeholder:text-xl " 
           name="note" 
           id="note"
+          type="submit"
+          onKeyDown={(e)=>{
+                if(e.keyCode === 'enter' ){
+                  console.log('enter');
+                  submitNote(e)
+                }
+          }}
           onChange={(event) => {
             setAllNotes(event.target.value);
+        
           }}
           value={allNotes}
           placeholder="Enter your text here..........."
@@ -112,17 +115,14 @@ const NoteSection = ({ noteGroup, selected ,setGoBacks}) => {
   );
 };
 
-const NoteBox = (props) => {
+const NoteBox = (props,setActiveIndex) => {
   const [noteGroup, setNoteGroup] = useState(null);
-
   const [selected, setSelected] = useState("");
+ 
   useEffect(() => {
     setSelected(props.selected);
-
-    if (props.selected) {
-      // setDisplay(false)
-      // document.getElementById('hidden').style.display='block'
-      const pocketGroups =
+    if (props.selected) { 
+        const pocketGroups = 
         JSON.parse(localStorage.getItem("pocketGroup")) || [];
 
       const matchingGroup = pocketGroups.find(
@@ -132,8 +132,9 @@ const NoteBox = (props) => {
     }
   }, [props.selected]);
 
+
   return (
-    <div className="w-[100%] bg-[#F7ECDC] z-0 font-roboto relative lg:z-0 lg:w-[100vw] lg:fixed lg:top-0" style={{ height: !noteGroup ?"100%" : '90vh' }}  >
+    <div className={`w-[100%] bg-[#F7ECDC] z-0 font-roboto relative lg:z-0 lg:w-[100vw] lg:fixed lg:top-0  ${props.isActive? 'lg:block':'lg:hidden'}`} style={{ height: !noteGroup ?"100%" : '90vh' }} id="hide"  >
       {!noteGroup ? (
         <div className="flex items-center justify-center flex-col  ">
           <img src={Img} alt="Pocket Notes"  className="w-[40%] mt-[20vh]"/>
@@ -148,7 +149,7 @@ const NoteBox = (props) => {
           </div>
         </div>
       ) : (
-        <NoteSection noteGroup={noteGroup} selected={selected || ""} setGoBacks={props.setBack} />
+        <NoteSection noteGroup={noteGroup} selected={selected || ""} onBack={()=>setActiveIndex(0)}  />
       )}
     </div>
   );

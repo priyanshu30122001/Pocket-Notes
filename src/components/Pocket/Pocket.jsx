@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./pocket.module.css";
 import NewGroup from "../NewNoteGroup/NewGroup";
 
 const Pocket = (props) => {
@@ -14,15 +13,14 @@ const Pocket = (props) => {
   const setNote = (name) => {
     setSelectNote(name);
     props.onSubmitApp(name);
-    props.setBack(false);
    
   };
 
   
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4 pl-4 pt-4 w-[35vw] bg-white overflow-hidden 
-                      lg:z-200 lg:w-[100vw] lg:h-[100vh]"  id="hidden">
+      <div className={`flex flex-col items-center justify-center gap-4 pl-4 pt-4 w-[35vw] bg-white overflow-hidden 
+                      lg:z-200 lg:w-[100vw] lg:h-[100vh] ${props.isActive ? 'lg:block':'lg:hidden'} `}>
         <div className="w-[100%] flex justify-items-start mb-[2vh] lg:ml-[2vw] lg:mt-[2vh]">
          <h1 className="text-3xl font-medium font-roboto ">Pocket Notes</h1>
         </div>
@@ -44,6 +42,7 @@ const Pocket = (props) => {
               key={index}
               onClick={() =>
                   {setNote(group[1])
+                    props.setActiveIndex(1)
                     // document.getElementById('hidden').style.display='none';
               }}
             >
